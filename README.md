@@ -98,16 +98,16 @@ GitHub
 ---
 ## usersテーブル
 
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| email                 | string     | null: false, unique: true      | 
-| encrypted_password    | string     | null: false                    |
-| employee_number       | integer    | null: false                    |
-| last_name             | string     | null: false                    |
-| first_name            | string     | null: false                    |
-| last_name_kana        | string     | null: false                    |
-| first_name_kana       | string     | null: false                    |
-| admin                 | boolean    |                                |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| email                  | string     | null: false, unique: true      | 
+| encrypted_password     | string     | null: false                    |
+| employee_number        | integer    | null: false                    |
+| last_name              | string     | null: false                    |
+| first_name             | string     | null: false                    |
+| last_name_kana         | string     | null: false                    |
+| first_name_kana        | string     | null: false                    |
+| admin                  | boolean    |                                |
 
 
 ### Association
@@ -122,6 +122,18 @@ GitHub
 ### Association
 - has_many :users, through: :team_users
 - has_many :projects
+
+
+## team_usersテーブル
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| team                   | references | null: false, foreign_key: true |
+| user                   | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :team
+- belongs_to :user
+
 
 ## projectsテーブル
 
@@ -141,7 +153,7 @@ GitHub
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
 | task_name              | string     | null: false                    |
-| details                | text       |                                |
+| detail                 | text       |                                |
 | schedule_day           | date       |                                |
 | deadline               | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -150,6 +162,7 @@ GitHub
 ### Association
 - belongs_to :user
 - belomgs_to :project
+
 
 ## ライセンス情報
 ---
